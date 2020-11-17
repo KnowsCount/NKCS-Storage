@@ -1,6 +1,3 @@
-/**
- * Created by hanlu on 2017/3/24.
- */
 const debug = process.env.NODE_ENV == 'development';
 //服务器端口
 const serverPort = '4000';
@@ -46,5 +43,5 @@ module.exports = {
 	mongooseConnect: debug ? mongooseConnectDev:mongooseConnectPro,
 	uploadImgServer: debug ? uploadImgServerDev:uploadImgServerPro,
 	//是否支持注册功能
-	register: debug
+	register: true
 };

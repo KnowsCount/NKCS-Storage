@@ -20,7 +20,9 @@
 
 *御用后端技术：Express + Mongoose*
 
-配色：（NKCS 红）#a82831
+配色：
+
+<p style="color:#a82831;">-（NKCS 红）#a82831</p>
 
 ---
 
