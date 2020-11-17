@@ -1,0 +1,43 @@
+<h1 align="center">📦 NKCS Storage Management System</h1>
+<p>
+  <img alt="Version" src="https://img.shields.io/badge/version-v17112020-blue.svg?cacheSeconds=2592000" />
+  <a>
+  <img alt="Release" src="https://img.shields.io/github/v/release/KnowsCount/NKCS-Storage" />
+  </a>
+</p>
+
+> REACT 产品。小型库存管理系统，给学校做。
+
+---
+
+### 技术之使用
+
+- 前端技术：React + React-Router + Redux + React-Redux + Redux-Saga + Webpack
+- 前端脚手架：dva
+- UI 组件库：ant-design
+
+*御用后端技术：Express + Mongoose*
+
+---
+
+### 已实现功能
+1. 登录注册功能
+2. 基础数据管理功能，包括：客户管理、商品管理、供应商管理
+3. 订单及进货单管理功能，包括：订单管理、入库管理
+4. 物资管理功能
+5. 结算管理功能
+6. 账单管理功能，包括：客户对账管理、供应商对账管理
+
+---
+
+### 豫先准备
+
+1. 安装 MongoDB 并正确启动
+2. 全局安装 pm2 `npm install -g pm2`
+3. 安装前端依赖包 `npm install`
+4. 因为采用前后端分离模式开发，如果要在开发模式运行则执行以下命令：
+  - 启动node server开发服务 npm run start:dev
+  - 启动前端dev server npm start
+5. 如果以发布模式运行则执行以下命令：
+  - 前端资源打包 npm run build    
+  - 启动node server部署服务 npm run start:prod
