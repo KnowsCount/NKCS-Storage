@@ -22,11 +22,8 @@
  *      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * 
  *            佛祖保佑       永不宕机     永无BUG
- * @Author: your name
- * @Date: 20
- * 
- * 8-04-01 23:47:56
- * @LastEditTime: 2020-11-14 16:46:35
+ * @Author: KnowsCount
+ * @LastEditTime: 2020-11-17 20:32:50
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /ManagingSystem/src/index.js
