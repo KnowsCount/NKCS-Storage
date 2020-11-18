@@ -3,71 +3,71 @@ import {parse} from 'qs';
 import {routerRedux} from 'dva/router';
 export default {
 
-    namespace: 'customerBillsSpace',
+	namespace: 'customerBillsSpace',
 
-    state: {
-        list: [],
-        total: null,
-        loading: false,
-        page: 1,
+	state: {
+		list: [],
+		total: null,
+		loading: false,
+		page: 1,
 		customerId: '',
-        breadcrumbItems: [
-            ['/customerBills', '首页'],
-            ['/customerBills', '账单管理'],
-        ],
+		breadcrumbItems: [
+			['/customerBills', '首页'],
+			['/customerBills', '账单管理'],
+		],
 		orders: [],
 		customerBills: [],
 		customers: [],
 		visible: false,
 		editorType: 'clearOrder',
 		currentItem: {}
-    },
+	},
 
-    subscriptions: {
-        setup({dispatch, history}) {
-            history.listen(location => {
-                if (location.pathname == '/customerBills') {
-                    dispatch({
-                        type: 'query',
-                        payload: location.query
-                    });
-                }
-            });
-        },
-    },
+	subscriptions: {
+		setup({dispatch, history}) {
+			history.listen(location => {
+				if (location.pathname == '/customerBills') {
+					dispatch({
+						type: 'query',
+						payload: location.query
+					});
+				}
+			});
+		},
+	},
 
-    effects: {
-        *query({payload}, {select, call, put}){
+	effects: {
+		*query({payload}, {select, call, put}){
 			const isLogin = yield select(({systemUser})=> systemUser.isLogin);
 			if(!isLogin){
 				return;
 			}
-            yield put({type: 'showLoading'});
-            yield put({
-                type: 'updateQueryKey',
-                payload: {
-                    page: 1,
-                    ...payload
-                }
-            });
+			yield put({type: 'showLoading'});
+			yield put({
+				type: 'updateQueryKey',
+				payload: {
+					page: 1,
+					...payload
+				}
+			});
 			let {page, customerId} = payload;
 			customerId = customerId=='00000'?'':customerId;
-            const {data} = yield call(query, parse({page, customerId}));
-            if (data) {
-                yield put({
-                    type: 'querySuccess',
-                    payload: {
-                        orders: data.orders,
+			const {data} = yield call(query, parse({page, customerId}));
+			if (data) {
+				yield put({
+					type: 'querySuccess',
+					payload: {
+						orders: data.orders,
 						customers: data.customers,
 						customerBills: data.customerBills,
-                        total: data.page.total,
-                        current: data.page.current
-                    }
-                });
-            }
-        },
+						total: data.page.total,
+						current: data.page.current
+					}
+				});
+			}
+		},
 		*doClearOrder({payload}, {call, put}){
-        	let {orderId, paymentAmount} = payload;
+			let {orderId, paymentAmount} = payload;
 			const {data} = yield call(doClearOrder, {orderId, paymentAmount});
 			if (data && data.success) {
 				yield put({
@@ -86,20 +86,20 @@ export default {
 				yield put(routerRedux.push('/customerBills'));
 			}
 		},
-    },
+	},
 
-    reducers: {
-        showLoading(state, action){
-            return {...state, loading: true};
-        },
-        querySuccess(state, action){
-        	const customers = action.payload.customers;
+	reducers: {
+		showLoading(state, action){
+			return {...state, loading: true};
+		},
+		querySuccess(state, action){
+			const customers = action.payload.customers;
 			customers.unshift({
 				_id:'00000',
 				customerName: '全部'
 			});
-            return {...state, ...action.payload, loading: false};
-        },
+			return {...state, ...action.payload, loading: false};
+		},
 		clearOrder(state, action){
 			const currentItem = action.payload.order;
 			return {...state, currentItem, editorType:'clearOrder', visible: true};
@@ -114,6 +114,6 @@ export default {
 		updateQueryKey(state, action){
 			return {...state, ...action.payload};
 		}
-    },
+	},
 
 }
