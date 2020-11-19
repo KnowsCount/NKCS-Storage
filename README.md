@@ -52,7 +52,7 @@
 3. 安装前端依赖包 `npm install`
 4. 因为采用前后端分离模式开发，如果要在开发模式运行则执行以下命令：
     - 启动 node server 开发服务 `npm run start:dev`
-    - 启动前端 `dev server npm start`
+    - 启动前端 dev server `npm start`
 5. 如果以发布模式运行则执行以下命令：
     - 前端资源打包 `npm run build    `
     - 启动 node server 部署服务 `npm run start:prod`
