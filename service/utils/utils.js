@@ -1,6 +1,12 @@
-/**
- * Created by wyf on 2017/1/13.
+/*
+ * @Description: REACT 产品。小型库存管理系统，给学校做。
+ * @Date: 2020-11-11 23:16:09
+ * @Author: KnowsCount
+ * @Github: https://github.com/KnowsCount/NKCS-Storage
+ * @LastEditTime: 2020-11-19 23:44:28
+ * @FilePath: /ManagingSystem/service/utils/utils.js
  */
+
 
 function getAuthToken(len) {
     let tokenStr = '0123456789abcdefghijklmnopqrstuvwxy';
