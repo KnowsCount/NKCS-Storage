@@ -1,5 +1,5 @@
 .systemInfo {
-	height: 128px;
+	height: 64px;
 	line-height: 64px;
 	padding: 0 25px;
 	background-color: #fafafa;
@@ -13,11 +13,16 @@
 	z-index: 999;
 	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
 }
-.systemName {
+.systemLogo {
 	background-image: url(../../assets/logo-wx.png);
 	width: 100%;
-/*	background-size: cover; */
 	background-repeat: no-repeat;
+	margin-top: 6px;
+}
+.systemName {
+	color: #4a4a4a;
+	font-size: 18px;
+	width: 15em;
 }
 .userInfo,
 .userName > span {

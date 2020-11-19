@@ -5,7 +5,7 @@ import {connect} from 'dva';
 import LoginModal from '../LoginModal/LoginModal';
 import LogupModal from '../LogupModal/LogupModal';
 import {register} from '../../../system.config.js';
-import {systemInfo, systemName, userInfo, userName, loginButton, logupButton} from './index.css';
+import {systemInfo, systemName, systemLogo, userInfo, userName, loginButton, logupButton} from './index.css';
 
 const SystemInfo = ({systemUser, dispatch}) => {
 	const {isLogin, username, modalVisible, logupModalVisible} = systemUser;
@@ -84,7 +84,8 @@ const SystemInfo = ({systemUser, dispatch}) => {
 
 	return (
 		<div className={systemInfo}>
-			<span className={systemName}></span>
+			<span className={systemLogo}></span>
+			<span className={systemName}>NKCS 库存管理系统</span>
 			<span className={userInfo}>
                 <span className={userName}>
                     {
