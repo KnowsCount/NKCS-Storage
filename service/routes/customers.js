@@ -1,5 +1,10 @@
-/**
- * Created by hanlu on 2017/2/28.
+/*
+ * @Description: REACT 产品。小型库存管理系统，给学校做。
+ * @Date: 2020-11-11 23:16:09
+ * @Author: KnowsCount
+ * @Github: https://github.com/KnowsCount/NKCS-Storage
+ * @LastEditTime: 2020-11-19 23:44:48
+ * @FilePath: /ManagingSystem/service/routes/auth.js
  */
 let express = require('express');
 let router = express.Router();
