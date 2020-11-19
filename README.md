@@ -1,12 +1,13 @@
 <h1 align="center">📦 NKCS Storage Management System</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-v17112020-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-v19112020-blue.svg?cacheSeconds=2592000" />
   <img alt="Database" src="https://img.shields.io/badge/database-MongoDB-lightgrey" />
   <img alt="Database" src="https://img.shields.io/badge/framework-dva-orange" />
 </p>
 
 
-> REACT 产品。小型库存管理系统，给 NKCS。
+
+> REACT 产品。小型库存管理系统，给 NKCS 开发。
 
 <center><img alt="image" src="./src/assets/homepage.png" style="zoom:20%" /></center>
 
@@ -17,6 +18,7 @@
 - 前端技术：React + React-Router + Redux + React-Redux + Redux-Saga + Webpack
 - 前端脚手架：dva
 - UI 组件库：ant-design
+- 数据库：mongodb
 
 *御用后端技术：Express + Mongoose*
 
@@ -27,7 +29,7 @@
 ---
 
 ### ✔️ 已实现功能
-1. 登录注册功能
+1. 登录注册功能**（有问题）**
 2. 基础数据管理功能，包括：
     1. 客户管理
     2. 商品管理

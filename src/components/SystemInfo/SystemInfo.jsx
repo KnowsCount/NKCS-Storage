@@ -84,7 +84,7 @@ const SystemInfo = ({systemUser, dispatch}) => {
 
 	return (
 		<div className={systemInfo}>
-			<span className={systemName}>NKCS [foo] 管理系统</span>
+			<span className={systemName}></span>
 			<span className={userInfo}>
                 <span className={userName}>
                     {
