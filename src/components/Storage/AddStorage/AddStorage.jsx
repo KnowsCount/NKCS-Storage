@@ -42,15 +42,15 @@ const AddStorage = ({
          */
         const {supplierId, products, totalAmount} = storageData;
         if (supplierId == null) {
-            message.error('请选择一个供应商！');
+            message.error('选择了客户再说啊！');
             return null;
         }
         if (products.length == 0) {
-            message.error('请至少添加一个商品条目！');
+            message.error('再怎么说也要添加个商品条目罢？');
             return null;
         }
 		if (totalAmount == 0) {
-			message.error('合计金额应大于0元！');
+			message.error('合合计金额要大于 0 元！');
 			return null;
 		}
         dispatch({
