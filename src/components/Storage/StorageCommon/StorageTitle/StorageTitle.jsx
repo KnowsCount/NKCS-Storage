@@ -5,7 +5,7 @@ const StorageTitle = ({storageNumber}) => {
 
     return (
         <div className={storageTitle}>
-            铭帝系统门窗出货单
+            NKCS 出货单
             <span className={storageNumberClass}>单据编号：{storageNumber}</span>
         </div>
     );

@@ -5,8 +5,6 @@
   <img alt="Database" src="https://img.shields.io/badge/framework-dva-orange" />
 </p>
 
-
-
 > REACT 产品。小型库存管理系统，给 NKCS 开发。
 
 <center><img alt="image" src="./src/assets/homepage.png" style="zoom:20%" /></center>
@@ -74,6 +72,10 @@
     - 启动 node server 部署服务 `npm run start:prod`
 
 ---
+
+### 🛠 待修复内容
+
+- 商品图片上传
 
 以上内容供健忘的我参考。¯\\_(ツ)\_/¯
 
