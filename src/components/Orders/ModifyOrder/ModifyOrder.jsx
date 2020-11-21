@@ -49,7 +49,7 @@ const ModifyOrder = ({
 			order['customerId'] = currentItem['customerId'];
 		}
 		if (products.length == 0) {
-			message.error('请至少添加一个商品条目！');
+			message.error('再怎么说也要添加一个商品条目罢？');
 			return null;
 		}
 		if (totalAmount == 0) {

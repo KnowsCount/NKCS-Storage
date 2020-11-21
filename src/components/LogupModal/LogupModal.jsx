@@ -77,7 +77,7 @@ const LogupModal =({
                             rules:[
                                 {
 									required:true,
-									message:'请输入用户名！'
+									message:'用户名！用户名！用户名！'
                                 }
                             ]
                         })(
@@ -91,7 +91,7 @@ const LogupModal =({
                             rules:[
                                 {
 									required:true,
-									message:'请输入密码！'
+									message:'密码！密码！密码！'
                                 },
 								{
 									validator: checkPass
@@ -108,7 +108,7 @@ const LogupModal =({
 							rules:[
 								{
 									required:true,
-									message:'请重新输入密码！'
+									message:'再来一遍？'
 								},
 								{
 									validator: checkConfirmPass
