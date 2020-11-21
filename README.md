@@ -7,7 +7,7 @@
 
 > REACT 产品。小型库存管理系统，给 NKCS 开发。
 
-<center><img alt="image" src="./src/assets/homepage.png" style="zoom:20%" /></center>
+<center><img alt="image" src="./src/assets/homepage.png" /></center>
 
 ---
 
@@ -45,7 +45,7 @@
 
 1. 按限额领取存货
 
-![figure1](https://ftp.bmp.ovh/imgs/2020/11/1bbb653bb79a2f0c.png)
+<img src='https://ftp.bmp.ovh/imgs/2020/11/1bbb653bb79a2f0c.png' width=200></img>
     
 
 ---
