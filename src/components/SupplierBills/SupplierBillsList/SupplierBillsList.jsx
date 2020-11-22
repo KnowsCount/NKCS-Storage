@@ -1,58 +1,60 @@
-import React, {Component, PropTypes} from 'react';
-import {Table, Pagination, Popconfirm, Button} from 'antd';
-import dateFormat from '../../../utils/dateFormat';
-import {PAGE_SIZE} from '../../../constants/constants';
-import Spliter from '../../Spliter/Spliter';
-import numberFormat from '../../../utils/numberFormat';
-import * as moment from 'moment';
-import {supplierBillsList, supplierBillsListTitle} from './index.css';
+import React, { Component, PropTypes } from "react";
+import { Table, Pagination, Popconfirm, Button } from "antd";
+import dateFormat from "../../../utils/dateFormat";
+import { PAGE_SIZE } from "../../../constants/constants";
+import Spliter from "../../Spliter/Spliter";
+import numberFormat from "../../../utils/numberFormat";
+import * as moment from "moment";
+import { supplierBillsList, supplierBillsListTitle } from "./index.css";
 
 class SupplierBillsList extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			selectId: ''
+			selectId: "",
 		};
-		const {onClearBill} = this.props;
+		const { onClearBill } = this.props;
 		this.columns = [
 			{
-				title: '序号',
-				dataIndex: 'serialNumber',
-				key: 'serialNumber',
-				render: (text, record, index) => <span>{index + 1}</span>
+				title: "序号",
+				dataIndex: "serialNumber",
+				key: "serialNumber",
+				render: (text, record, index) => <span>{index + 1}</span>,
 			},
 			{
-				title: '供应商名称',
-				dataIndex: 'supplierName',
-				key: 'supplierName'
+				title: "供应商名称",
+				dataIndex: "supplierName",
+				key: "supplierName",
 			},
 			{
-				title: '应付金额',
-				dataIndex: 'totalAmount',
-				key: 'totalAmount',
-				render: (text, record, index)=> numberFormat(text)
+				title: "应付金额",
+				dataIndex: "totalAmount",
+				key: "totalAmount",
+				render: (text, record, index) => numberFormat(text),
 			},
 			{
-				title: '已付金额',
-				dataIndex: 'paymentAmount',
-				key: 'paymentAmount',
-				render: (text, record, index)=> numberFormat(text)
+				title: "已付金额",
+				dataIndex: "paymentAmount",
+				key: "paymentAmount",
+				render: (text, record, index) => numberFormat(text),
 			},
 			{
-				title: '负债金额',
-				dataIndex: 'debtAmount',
-				key: 'debtAmount',
-				render: (text, record, index)=> <span style={{color:'red'}}>{numberFormat(text)}</span>
+				title: "负债金额",
+				dataIndex: "debtAmount",
+				key: "debtAmount",
+				render: (text, record, index) => (
+					<span style={{ color: "red" }}>{numberFormat(text)}</span>
+				),
 			},
 			{
-				title: '操作',
-				key: 'operation',
-				render: (text, record)=>(
+				title: "操作",
+				key: "operation",
+				render: (text, record) => (
 					<p>
-						<a onClick={()=> onClearBill(record)}>清账</a>
+						<a onClick={() => onClearBill(record)}>清账</a>
 					</p>
-				)
-			}
+				),
+			},
 		];
 	}
 
@@ -62,19 +64,16 @@ class SupplierBillsList extends Component {
 		dataSource: PropTypes.array,
 		loading: PropTypes.any,
 		total: PropTypes.any,
-		current: PropTypes.any
+		current: PropTypes.any,
 	};
 
 	onPageChange = (page) => {
-		const {onPageChange} = this.props;
+		const { onPageChange } = this.props;
 		onPageChange(page);
 	};
 
 	render() {
-		const {
-			loading,
-			dataSource
-		} = this.props;
+		const { loading, dataSource } = this.props;
 		return (
 			<div className={supplierBillsList}>
 				<h2 className={supplierBillsListTitle}>负债供应商列表</h2>
@@ -82,11 +81,11 @@ class SupplierBillsList extends Component {
 					columns={this.columns}
 					dataSource={dataSource}
 					loading={loading}
-					rowKey={record => record._id}
+					rowKey={(record) => record._id}
 					pagination={false}
 				/>
 			</div>
-		)
+		);
 	}
 }
 

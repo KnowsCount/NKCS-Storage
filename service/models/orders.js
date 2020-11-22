@@ -7,28 +7,28 @@
  * @FilePath: /ManagingSystem/service/models/orders.js
  */
 
-let mongoose =  require('mongoose');
+let mongoose = require("mongoose");
 let Schema = mongoose.Schema;
 
 let orderSchema = new Schema({
-    createInstance: Date,
+	createInstance: Date,
 	sequence: Number,
-    orderNumber: String,
-    customerId: String,
-    customerName: String,
-    totalAmount: Number,
-    paymentAmount: Number,
-    debtAmount: Number,
-    mem: String,
-    products: Array,
-	userId: String
+	orderNumber: String,
+	customerId: String,
+	customerName: String,
+	totalAmount: Number,
+	paymentAmount: Number,
+	debtAmount: Number,
+	mem: String,
+	products: Array,
+	userId: String,
 });
 
 /**
  *here can add same methods or statics
  */
-orderSchema.statics.findByOrderId=function(orderId, cb){
-    return this.find({_id:orderId}, cb);
+orderSchema.statics.findByOrderId = function (orderId, cb) {
+	return this.find({ _id: orderId }, cb);
 };
 
-module.exports = mongoose.model('Order', orderSchema);
+module.exports = mongoose.model("Order", orderSchema);

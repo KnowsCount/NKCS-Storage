@@ -1,12 +1,12 @@
-import React, {Component, PropTypes} from 'react';
-import {connect} from 'dva';
-import {routerRedux} from 'dva/router';
-import FundsSearchForm from '../../components/Funds/FundsSearchForm/FundsSearchForm';
-import FundsList from '../../components/Funds/FundsList/FundsList';
-import {redirect} from '../../utils/webSessionUtils';
-import styles from './index.css';
+import React, { Component, PropTypes } from "react";
+import { connect } from "dva";
+import { routerRedux } from "dva/router";
+import FundsSearchForm from "../../components/Funds/FundsSearchForm/FundsSearchForm";
+import FundsList from "../../components/Funds/FundsList/FundsList";
+import { redirect } from "../../utils/webSessionUtils";
+import styles from "./index.css";
 
-function genFunds({dispatch, funds, loading}) {
+function genFunds({ dispatch, funds, loading }) {
 	/*const {
 		list,
 		field,
@@ -19,14 +19,14 @@ function genFunds({dispatch, funds, loading}) {
 		keyword,
 		onSearch(fieldValues){
 			dispatch(routerRedux.push({
-				pathname: '/funds',
+				pathname: "/funds",
 				query: {...fieldValues, page: 1}
 			}));
 		}
 	};*/
 	const fundsList = {
 		dataSource: funds,
-		loading
+		loading,
 	};
 	return (
 		<div className={styles.fundsContainer}>

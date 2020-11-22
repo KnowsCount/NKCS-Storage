@@ -1,11 +1,11 @@
-import React, {Component, PropTypes} from 'react';
-import {Table, Pagination, Popconfirm, Button} from 'antd';
-import dateFormat from '../../../utils/dateFormat';
-import {PAGE_SIZE} from '../../../constants/constants';
-import numberFormat from '../../../utils/numberFormat';
-import * as moment from 'moment';
-import Spliter from '../../Spliter/Spliter';
-import {orderList} from './index.css';
+import React, { Component, PropTypes } from "react";
+import { Table, Pagination, Popconfirm, Button } from "antd";
+import dateFormat from "../../../utils/dateFormat";
+import { PAGE_SIZE } from "../../../constants/constants";
+import numberFormat from "../../../utils/numberFormat";
+import * as moment from "moment";
+import Spliter from "../../Spliter/Spliter";
+import { orderList } from "./index.css";
 
 const OrderList = ({
 	total,
@@ -15,68 +15,79 @@ const OrderList = ({
 	onPageChange,
 	onModify,
 	onReadOnly,
-	onDel
+	onDel,
 }) => {
 	const columns = [
 		{
-			title: '序号',
-			dataIndex: 'serialNumber',
-			key: 'serialNumber',
-			render: (text, record, index) => <span>{index + 1}</span>
+			title: "序号",
+			dataIndex: "serialNumber",
+			key: "serialNumber",
+			render: (text, record, index) => <span>{index + 1}</span>,
 		},
 		{
-			title: '下单日期',
-			dataIndex: 'createInstance',
-			key: 'createInstance',
-			render: (text) => <span>{moment.parseZone(text).local().format('YYYY-MM-DD HH:mm')}</span>
+			title: "下单日期",
+			dataIndex: "createInstance",
+			key: "createInstance",
+			render: (text) => (
+				<span>
+					{moment.parseZone(text).local().format("YYYY-MM-DD HH:mm")}
+				</span>
+			),
 		},
 		{
-			title: '单据编号',
-			dataIndex: 'orderNumber',
-			key: 'orderNumber'
+			title: "单据编号",
+			dataIndex: "orderNumber",
+			key: "orderNumber",
 		},
 		{
-			title: '客户名称',
-			dataIndex: 'customerName',
-			key: 'customerName'
+			title: "客户名称",
+			dataIndex: "customerName",
+			key: "customerName",
 		},
 		{
-			title: '应付金额',
-			dataIndex: 'totalAmount',
-			key: 'totalAmount',
-			render: (text, record, index) => numberFormat(text)
+			title: "应付金额",
+			dataIndex: "totalAmount",
+			key: "totalAmount",
+			render: (text, record, index) => numberFormat(text),
 		},
 		{
-			title: '已付金额',
-			dataIndex: 'paymentAmount',
-			key: 'paymentAmount',
-			render: (text, record, index) => numberFormat(text)
+			title: "已付金额",
+			dataIndex: "paymentAmount",
+			key: "paymentAmount",
+			render: (text, record, index) => numberFormat(text),
 		},
 		{
-			title: '备注',
-			dataIndex: 'mem',
-			key: 'mem',
+			title: "备注",
+			dataIndex: "mem",
+			key: "mem",
 		},
 		{
-			title: '操作',
-			key: 'operation',
+			title: "操作",
+			key: "operation",
 			render: (text, record) => (
 				<p>
-					<a onClick={() => onModify(record['_id'])}>编辑</a>
-					<Spliter spliterText="|"/>
-					<Popconfirm title="确定删除该条记录？" onConfirm={() => onDel(record['_id'])}>
-						<a type='ghost'>删除</a>
+					<a onClick={() => onModify(record["_id"])}>编辑</a>
+					<Spliter spliterText="|" />
+					<Popconfirm
+						title="确定删除该条记录？"
+						onConfirm={() => onDel(record["_id"])}
+					>
+						<a type="ghost">删除</a>
 					</Popconfirm>
-					<Spliter spliterText="|"/>
-					<a onClick={() => onReadOnly(record['_id'])}>详情</a>
+					<Spliter spliterText="|" />
+					<a onClick={() => onReadOnly(record["_id"])}>详情</a>
 				</p>
-			)
-		}
+			),
+		},
 	];
 
 	const rowSelection = {
 		onChange: (selectedRowKeys, selectedRows) => {
-			console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+			console.log(
+				`selectedRowKeys: ${selectedRowKeys}`,
+				"selectedRows: ",
+				selectedRows
+			);
 		},
 		onSelect: (record, selected, selectedRows) => {
 			console.log(record, selected, selectedRows);
@@ -84,8 +95,8 @@ const OrderList = ({
 		onSelectAll: (selected, selectedRows, changeRows) => {
 			console.log(selected, selectedRows, changeRows);
 		},
-		getCheckboxProps: record => ({
-			disabled: record.name === 'Disabled User',    // Column configuration not to be checked
+		getCheckboxProps: (record) => ({
+			disabled: record.name === "Disabled User", // Column configuration not to be checked
 		}),
 	};
 
@@ -95,7 +106,7 @@ const OrderList = ({
 				columns={columns}
 				dataSource={dataSource}
 				loading={loading}
-				rowKey={record => record._id}
+				rowKey={(record) => record._id}
 				pagination={false}
 				rowSelection={rowSelection}
 			/>
@@ -117,7 +128,7 @@ OrderList.propTypes = {
 	dataSource: PropTypes.array,
 	loading: PropTypes.any,
 	total: PropTypes.any,
-	current: PropTypes.any
+	current: PropTypes.any,
 };
 
 export default OrderList;

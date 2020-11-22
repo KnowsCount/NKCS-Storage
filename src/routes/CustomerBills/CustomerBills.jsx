@@ -1,137 +1,150 @@
-import React, {Component,PropTypes} from 'react';
-import {connect} from 'dva';
-import SearchBar from '../../components/SearchBar/SearchBar';
-import CustomerBillsSearchForm from '../../components/CustomerBills/CustomerBillsSearchForm/CustomerBillsSearchForm';
-import DebtOrdersList from '../../components/CustomerBills/DebtOrdersList/DebtOrdersList';
-import CustomerBillsList from '../../components/CustomerBills/CustomerBillsList/CustomerBillsList';
-import ClearDebtOrdersModal from '../../components/CustomerBills/ClearDebtOrdersModal/ClearDebtOrdersModal';
-import ClearCustomerBillsModal from '../../components/CustomerBills/ClearCustomerBillsModal/ClearCustomerBillsModal';
-import {routerRedux} from 'dva/router';
-import BreadcrumbList from '../../components/BreadcrumbList/BreadcrumbList';
-import {redirect} from '../../utils/webSessionUtils';
-import {search, customerBillsClass, debtOrdersListContainer, customerBillsListContainer} from './index.css';
+import React, { Component, PropTypes } from "react";
+import { connect } from "dva";
+import SearchBar from "../../components/SearchBar/SearchBar";
+import CustomerBillsSearchForm from "../../components/CustomerBills/CustomerBillsSearchForm/CustomerBillsSearchForm";
+import DebtOrdersList from "../../components/CustomerBills/DebtOrdersList/DebtOrdersList";
+import CustomerBillsList from "../../components/CustomerBills/CustomerBillsList/CustomerBillsList";
+import ClearDebtOrdersModal from "../../components/CustomerBills/ClearDebtOrdersModal/ClearDebtOrdersModal";
+import ClearCustomerBillsModal from "../../components/CustomerBills/ClearCustomerBillsModal/ClearCustomerBillsModal";
+import { routerRedux } from "dva/router";
+import BreadcrumbList from "../../components/BreadcrumbList/BreadcrumbList";
+import { redirect } from "../../utils/webSessionUtils";
+import {
+	search,
+	customerBillsClass,
+	debtOrdersListContainer,
+	customerBillsListContainer,
+} from "./index.css";
 
-function genCustomerBills({dispatch, customerBillsSpace}){
-    const {
-        total,
-        loading,
-        current,
+function genCustomerBills({ dispatch, customerBillsSpace }) {
+	const {
+		total,
+		loading,
+		current,
 		breadcrumbItems,
 		orders,
 		customers,
 		customerBills,
 		visible,
 		editorType,
-		currentItem
-    } = customerBillsSpace;
+		currentItem,
+	} = customerBillsSpace;
 
-	const debtOrdersListProps ={
+	const debtOrdersListProps = {
 		current,
 		total,
 		dataSource: orders,
 		loading,
-		onClearOrder(order){
+		onClearOrder(order) {
 			dispatch({
-				type: 'customerBillsSpace/clearOrder',
+				type: "customerBillsSpace/clearOrder",
 				payload: {
-					order
-				}
+					order,
+				},
 			});
 		},
-		onPageChange(page){
+		onPageChange(page) {
 			dispatch({
-				type:'customerBillsSpace/query',
-				payload: {customerId, page}
+				type: "customerBillsSpace/query",
+				payload: { customerId, page },
 			});
-		}
+		},
 	};
 
-	const customerBillsListProps ={
+	const customerBillsListProps = {
 		dataSource: customerBills,
 		loading,
-		onClearBill(bill){
+		onClearBill(bill) {
 			dispatch({
-				type: 'customerBillsSpace/clearBill',
+				type: "customerBillsSpace/clearBill",
 				payload: {
-					bill
-				}
+					bill,
+				},
 			});
-		}
+		},
 	};
 
-	const onSearch = (fieldValues)=>{
+	const onSearch = (fieldValues) => {
 		dispatch({
-			type:'customerBillsSpace/query',
-			payload:{...fieldValues, page:1}
+			type: "customerBillsSpace/query",
+			payload: { ...fieldValues, page: 1 },
 		});
 	};
 
 	const clearModalProps = {
 		visible,
 		currentItem,
-		onConfirm(values){
+		onConfirm(values) {
 			dispatch({
-				type: `customerBillsSpace/${editorType=='clearOrder'? 'doClearOrder':'doClearBill'}`,
+				type: `customerBillsSpace/${
+					editorType == "clearOrder" ? "doClearOrder" : "doClearBill"
+				}`,
 				payload: {
-					...values
-				}
+					...values,
+				},
 			});
 		},
-		onCancel(){
+		onCancel() {
 			dispatch({
-				type: 'customerBillsSpace/hideEditor'
+				type: "customerBillsSpace/hideEditor",
 			});
 		},
 	};
 
-	const ClearDebtOrdersModalGen = ()=><ClearDebtOrdersModal {...clearModalProps}/>;
+	const ClearDebtOrdersModalGen = () => (
+		<ClearDebtOrdersModal {...clearModalProps} />
+	);
 
-	const ClearCustomerBillsModalGen = ()=><ClearCustomerBillsModal {...clearModalProps}/>;
+	const ClearCustomerBillsModalGen = () => (
+		<ClearCustomerBillsModal {...clearModalProps} />
+	);
 
 	return (
 		<div className={customerBillsClass}>
 			<BreadcrumbList breadcrumbItems={breadcrumbItems} />
 			<div className={search}>
-				<CustomerBillsSearchForm onSearch={onSearch} customers={customers}/>
+				<CustomerBillsSearchForm
+					onSearch={onSearch}
+					customers={customers}
+				/>
 			</div>
 			<div className={debtOrdersListContainer}>
 				<DebtOrdersList {...debtOrdersListProps} />
 			</div>
 			<div className={customerBillsListContainer}>
-				<CustomerBillsList {...customerBillsListProps}/>
+				<CustomerBillsList {...customerBillsListProps} />
 			</div>
-			{
-				editorType=='clearOrder'?
-					<ClearDebtOrdersModalGen />:
-					<ClearCustomerBillsModalGen />
-			}
+			{editorType == "clearOrder" ? (
+				<ClearDebtOrdersModalGen />
+			) : (
+				<ClearCustomerBillsModalGen />
+			)}
 		</div>
 	);
 }
 
 class CustomerBills extends Component {
-    constructor(props){
-        super(props);
-    }
+	constructor(props) {
+		super(props);
+	}
 
-	componentWillMount(){
-		let {isLogin} = this.props.systemUser;
+	componentWillMount() {
+		let { isLogin } = this.props.systemUser;
 		return !isLogin && redirect();
 	}
 
-    render(){
-		let {isLogin} = this.props.systemUser;
+	render() {
+		let { isLogin } = this.props.systemUser;
 		return isLogin && genCustomerBills(this.props);
-    }
+	}
 }
 
 CustomerBills.propTypes = {
-    orders:PropTypes.object,
+	orders: PropTypes.object,
 };
 
-function mapStateToProps({customerBillsSpace, systemUser}) {
-    return {customerBillsSpace, systemUser};
+function mapStateToProps({ customerBillsSpace, systemUser }) {
+	return { customerBillsSpace, systemUser };
 }
-
 
 export default connect(mapStateToProps)(CustomerBills);

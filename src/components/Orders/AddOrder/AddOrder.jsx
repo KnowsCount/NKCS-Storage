@@ -1,37 +1,40 @@
-import React, {Component, PropTypes} from 'react';
-import {Button} from 'antd';
-import {message} from 'antd';
-import AddOrderTitle from '../OrderCommon/OrderTitle/OrderTitle';
-import AddOrderForm from '../OrderCommon/OrderForm/OrderForm';
-import AddOrderGrid from '../OrderCommon/AddOrderGrid/AddOrderGrid';
-import AddRemarkForm from '../OrderCommon/OrderRemarkForm/OrderRemarkForm';
-import {connect} from 'dva';
-import {addOrder, orderWrapper, buttonGroup, confirmButton, cancelButton} from './index.css';
+import React, { Component, PropTypes } from "react";
+import { Button } from "antd";
+import { message } from "antd";
+import AddOrderTitle from "../OrderCommon/OrderTitle/OrderTitle";
+import AddOrderForm from "../OrderCommon/OrderForm/OrderForm";
+import AddOrderGrid from "../OrderCommon/AddOrderGrid/AddOrderGrid";
+import AddRemarkForm from "../OrderCommon/OrderRemarkForm/OrderRemarkForm";
+import { connect } from "dva";
+import {
+	addOrder,
+	orderWrapper,
+	buttonGroup,
+	confirmButton,
+	cancelButton,
+} from "./index.css";
 
-const AddOrder = ({
-	dispatch,
-	orders
-}) => {
-	const {order, customers, productList} = orders;
+const AddOrder = ({ dispatch, orders }) => {
+	const { order, customers, productList } = orders;
 	const addOrderFormProps = {
 		customers,
 		disabled: false,
-		onSelect(customerId){
+		onSelect(customerId) {
 			dispatch({
-				type: 'orders/setCustomer',
+				type: "orders/setCustomer",
 				payload: {
-					customerId
-				}
-			})
-		}
+					customerId,
+				},
+			});
+		},
 	};
 
 	const onSetMem = (mem) => {
 		dispatch({
-			type: 'orders/setMem',
+			type: "orders/setMem",
 			payload: {
-				mem: mem
-			}
+				mem: mem,
+			},
 		});
 	};
 
@@ -40,33 +43,33 @@ const AddOrder = ({
 		 * 数据保存前，做数据校验,
 		 * 用户不允许为空，并且至少需要保存一条商品数据
 		 */
-		const {customerId, products, totalAmount} = order;
+		const { customerId, products, totalAmount } = order;
 		if (customerId == null) {
-			message.error('选择了客户再说啊！');
+			message.error("选择了客户再说啊！");
 			return null;
 		}
 		if (products.length == 0) {
-			message.error('再怎么说也要添加个商品条目罢？');
+			message.error("再怎么说也要添加个商品条目罢？");
 			return null;
 		}
 		if (totalAmount == 0) {
-			message.error('合计金额要大于 0 元！');
+			message.error("合计金额要大于 0 元！");
 			return null;
 		}
 		dispatch({
-			type: 'orders/create',
+			type: "orders/create",
 			payload: {
-				order
-			}
+				order,
+			},
 		});
 		dispatch({
-			type: 'orders/query'
+			type: "orders/query",
 		});
 	};
 
 	const handleCancel = () => {
 		dispatch({
-			type: 'orders/resetOrder'
+			type: "orders/resetOrder",
 		});
 	};
 
@@ -76,29 +79,41 @@ const AddOrder = ({
 		totalAmount: order.totalAmount,
 		paymentAmount: order.paymentAmount,
 		disabled: false,
-		editProducts(products, totalAmount, paymentAmount){
+		editProducts(products, totalAmount, paymentAmount) {
 			dispatch({
-				type: 'orders/setProducts',
+				type: "orders/setProducts",
 				payload: {
 					products,
 					totalAmount,
-					paymentAmount
-				}
+					paymentAmount,
+				},
 			});
-		}
+		},
 	};
 
 	return (
 		<div className={addOrder}>
 			<div className={orderWrapper}>
-				<AddOrderTitle orderNumber={order.orderNumber}/>
-				<AddOrderForm {...addOrderFormProps}/>
-				<AddOrderGrid {...addOrderGridProps}/>
-				<AddRemarkForm disabled={false} onSetMem={onSetMem}/>
+				<AddOrderTitle orderNumber={order.orderNumber} />
+				<AddOrderForm {...addOrderFormProps} />
+				<AddOrderGrid {...addOrderGridProps} />
+				<AddRemarkForm disabled={false} onSetMem={onSetMem} />
 			</div>
 			<div className={buttonGroup}>
-				<Button type="primary" className={confirmButton} onClick={handleConfirm}>确定</Button>
-				<Button type="ghost" className={cancelButton} onClick={handleCancel}>取消</Button>
+				<Button
+					type="primary"
+					className={confirmButton}
+					onClick={handleConfirm}
+				>
+					确定
+				</Button>
+				<Button
+					type="ghost"
+					className={cancelButton}
+					onClick={handleCancel}
+				>
+					取消
+				</Button>
 			</div>
 		</div>
 	);
@@ -111,11 +126,11 @@ AddOrder.propTypes = {
 	dataSource: PropTypes.array,
 	loading: PropTypes.any,
 	total: PropTypes.any,
-	current: PropTypes.any
+	current: PropTypes.any,
 };
 
-function mapStateToProps({orders}) {
-	return {orders};
+function mapStateToProps({ orders }) {
+	return { orders };
 }
 
 export default connect(mapStateToProps)(AddOrder);

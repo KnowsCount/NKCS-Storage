@@ -7,7 +7,7 @@
  * @FilePath: /ManagingSystem/service/models/productStocks.js
  */
 
-let mongoose = require('mongoose');
+let mongoose = require("mongoose");
 let Schema = mongoose.Schema;
 
 let productStocksSchema = new Schema({
@@ -18,14 +18,14 @@ let productStocksSchema = new Schema({
 	amount: Number,
 	productUnit: String,
 	type: String,
-	userId: String
+	userId: String,
 });
 
 /**
  *here can add same methods or statics
  */
 productStocksSchema.statics.findById = function (productId, cb) {
-    return this.find({productId:productId}, cb);
+	return this.find({ productId: productId }, cb);
 };
 
-module.exports = mongoose.model('ProductStocks', productStocksSchema);
+module.exports = mongoose.model("ProductStocks", productStocksSchema);

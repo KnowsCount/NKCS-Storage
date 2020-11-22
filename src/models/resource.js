@@ -1,98 +1,108 @@
-import {query, onSettlement} from '../services/resource';
-import * as products from '../services/products';
-import {parse} from 'qs';
+import { query, onSettlement } from "../services/resource";
+import * as products from "../services/products";
+import { parse } from "qs";
 export default {
+	namespace: "resource",
 
-    namespace: 'resource',
-
-    state: {
-		products:[],
+	state: {
+		products: [],
 		stocks: [],
 		funds: [],
 		loading: false,
-        breadcrumbItems: [
-            ['/resource', '首页'],
-            ['/resource', '物资管理'],
-        ]
-    },
+		breadcrumbItems: [
+			["/resource", "首页"],
+			["/resource", "物资管理"],
+		],
+	},
 
-    subscriptions: {
-        setup({dispatch, history}) {
-            history.listen(location => {
-				if(location.pathname=='/resource'){
+	subscriptions: {
+		setup({ dispatch, history }) {
+			history.listen((location) => {
+				if (location.pathname == "/resource") {
 					dispatch({
-						type: 'queryProducts'
+						type: "queryProducts",
 					});
 					dispatch({
-						type: 'query'
+						type: "query",
 					});
 				}
-            });
-        },
-    },
-
-    effects: {
-    	*query({payload}, {select, call, put}){
-			const isLogin = yield select(({systemUser})=> systemUser.isLogin);
-			if(!isLogin){
-				return;
-			}
-    		yield put({
-    			type: 'showLoading'
 			});
-			let productId = payload && payload.productId!='00000'?payload.productId:'';
-			const {data} = yield call(query, {productId});
-			if(data && data.success) {
-				yield put({
-					type: 'querySuccess',
-					stocks: [...data.products],
-					funds: [...data.products]
-				});
-			}
 		},
-    	*queryProducts({payload}, {select, call, put}){
-			const isLogin = yield select(({systemUser})=> systemUser.isLogin);
-			if(!isLogin){
+	},
+
+	effects: {
+		*query({ payload }, { select, call, put }) {
+			const isLogin = yield select(
+				({ systemUser }) => systemUser.isLogin
+			);
+			if (!isLogin) {
 				return;
 			}
-			const {data} = yield call(products.query, {});
-			if(data && data.success){
+			yield put({
+				type: "showLoading",
+			});
+			let productId =
+				payload && payload.productId != "00000"
+					? payload.productId
+					: "";
+			const { data } = yield call(query, { productId });
+			if (data && data.success) {
 				yield put({
-					type: 'queryProductsSuccess',
-					products: data.products
+					type: "querySuccess",
+					stocks: [...data.products],
+					funds: [...data.products],
 				});
 			}
 		},
-        *onSettlement({payload}, {select, call, put}){
-			const {data} = yield call(onSettlement);
-			if(data && data.success){
-				const {data} = yield call(query, {});
-				if(data && data.success) {
+		*queryProducts({ payload }, { select, call, put }) {
+			const isLogin = yield select(
+				({ systemUser }) => systemUser.isLogin
+			);
+			if (!isLogin) {
+				return;
+			}
+			const { data } = yield call(products.query, {});
+			if (data && data.success) {
+				yield put({
+					type: "queryProductsSuccess",
+					products: data.products,
+				});
+			}
+		},
+		*onSettlement({ payload }, { select, call, put }) {
+			const { data } = yield call(onSettlement);
+			if (data && data.success) {
+				const { data } = yield call(query, {});
+				if (data && data.success) {
 					yield put({
-						type: 'querySuccess',
+						type: "querySuccess",
 						stocks: [...data.products],
-						funds: [...data.products]
+						funds: [...data.products],
 					});
 				}
 			}
-        }
-    },
-
-    reducers: {
-		querySuccess(state, action){
-			return {...state, stocks: action.stocks, funds: action.funds, loading: false};
 		},
-		queryProductsSuccess(state, action){
+	},
+
+	reducers: {
+		querySuccess(state, action) {
+			return {
+				...state,
+				stocks: action.stocks,
+				funds: action.funds,
+				loading: false,
+			};
+		},
+		queryProductsSuccess(state, action) {
 			const products = action.products;
-			products.unshift({'_id':'00000', productName:'全部'});
-			return {...state, products};
+			products.unshift({ _id: "00000", productName: "全部" });
+			return { ...state, products };
 		},
-        settlementSuccess(state, action){
-            return {...state, ...action.payload};
-        },
-		showLoading(state, action){
-        	return {...state, loading: true};
+		settlementSuccess(state, action) {
+			return { ...state, ...action.payload };
 		},
-    },
-
-}
+		showLoading(state, action) {
+			return { ...state, loading: true };
+		},
+	},
+};
