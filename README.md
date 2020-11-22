@@ -13,12 +13,12 @@
 
 ### 🛠 技术之使用
 
-- 前端技术：React + React-Router + Redux + React-Redux + Redux-Saga + Webpack
-- 前端脚手架：dva
-- UI 组件库：ant-design
-- 数据库：mongodb
+-   前端技术：React + React-Router + Redux + React-Redux + Redux-Saga + Webpack
+-   前端脚手架：dva
+-   UI 组件库：ant-design
+-   数据库：mongodb
 
-*御用后端技术：Express + Mongoose*
+_御用后端技术：Express + Mongoose_
 
 配色：
 
@@ -27,6 +27,7 @@
 ---
 
 ### ✔️ 已实现功能
+
 1. 登录注册功能
 2. 基础数据管理功能，包括：
     1. 客户管理
@@ -45,8 +46,7 @@
 
 1. 按限额领取存货
 
-<img src='https://ftp.bmp.ovh/imgs/2020/11/1bbb653bb79a2f0c.png' width=200></img>
-    
+<img src="https://ftp.bmp.ovh/imgs/2020/11/1bbb653bb79a2f0c.png" width=200></img>
 
 ---
 
@@ -59,14 +59,15 @@
     - 启动 node server 开发服务 `npm run start:dev`
     - 启动前端 dev server `npm start`
 5. 如果以发布模式运行则执行以下命令：
-    - 前端资源打包 `npm run build    `
+    - 前端资源打包 `npm run build `
     - 启动 node server 部署服务 `npm run start:prod`
+
+（详情参考 package.json）
 
 ---
 
 ### 🛠 待修复内容
 
-- 商品图片上传
+-   商品图片上传
 
-以上内容供健忘的我参考。¯\\_(ツ)\_/¯
-
+以上内容供健忘的我参考。¯\\\_(ツ)\_/¯

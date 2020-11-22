@@ -1,137 +1,152 @@
-import React, {Component,PropTypes} from 'react';
-import {connect} from 'dva';
-import SearchBar from '../../components/SearchBar/SearchBar';
-import SupplierBillsSearchForm from '../../components/SupplierBills/SupplierBillsSearchForm/SupplierBillsSearchForm';
-import DebtStorageList from '../../components/SupplierBills/DebtStorageList/DebtStorageList';
-import SupplierBillsList from '../../components/SupplierBills/SupplierBillsList/SupplierBillsList';
-import ClearDebtStorageModal from '../../components/SupplierBills/ClearDebtStorageModal/ClearDebtStorageModal';
-import ClearSupplierBillsModal from '../../components/SupplierBills/ClearSupplierBillsModal/ClearSupplierBillsModal';
-import {routerRedux} from 'dva/router';
-import BreadcrumbList from '../../components/BreadcrumbList/BreadcrumbList';
-import {redirect} from '../../utils/webSessionUtils';
-import {search, supplierBillsClass, debtStorageListContainer, supplierBillsListContainer} from './index.css';
+import React, { Component, PropTypes } from "react";
+import { connect } from "dva";
+import SearchBar from "../../components/SearchBar/SearchBar";
+import SupplierBillsSearchForm from "../../components/SupplierBills/SupplierBillsSearchForm/SupplierBillsSearchForm";
+import DebtStorageList from "../../components/SupplierBills/DebtStorageList/DebtStorageList";
+import SupplierBillsList from "../../components/SupplierBills/SupplierBillsList/SupplierBillsList";
+import ClearDebtStorageModal from "../../components/SupplierBills/ClearDebtStorageModal/ClearDebtStorageModal";
+import ClearSupplierBillsModal from "../../components/SupplierBills/ClearSupplierBillsModal/ClearSupplierBillsModal";
+import { routerRedux } from "dva/router";
+import BreadcrumbList from "../../components/BreadcrumbList/BreadcrumbList";
+import { redirect } from "../../utils/webSessionUtils";
+import {
+	search,
+	supplierBillsClass,
+	debtStorageListContainer,
+	supplierBillsListContainer,
+} from "./index.css";
 
-function genSupplierBills({dispatch, supplierBillsSpace}){
-    const {
-        total,
-        loading,
-        current,
+function genSupplierBills({ dispatch, supplierBillsSpace }) {
+	const {
+		total,
+		loading,
+		current,
 		breadcrumbItems,
 		storage,
 		suppliers,
 		supplierBills,
 		visible,
 		editorType,
-		currentItem
-    } = supplierBillsSpace;
+		currentItem,
+	} = supplierBillsSpace;
 
-	const debtStorageListProps ={
+	const debtStorageListProps = {
 		current,
 		total,
 		dataSource: storage,
 		loading,
-		onClearStorage(order){
+		onClearStorage(order) {
 			dispatch({
-				type: 'supplierBillsSpace/clearStorage',
+				type: "supplierBillsSpace/clearStorage",
 				payload: {
-					order
-				}
+					order,
+				},
 			});
 		},
-		onPageChange(page){
+		onPageChange(page) {
 			dispatch({
-				type:'supplierBillsSpace/query',
-				payload: {supplierId, page}
+				type: "supplierBillsSpace/query",
+				payload: { supplierId, page },
 			});
-		}
+		},
 	};
 
-	const supplierBillsListProps ={
+	const supplierBillsListProps = {
 		dataSource: supplierBills,
 		loading,
-		onClearBill(bill){
+		onClearBill(bill) {
 			dispatch({
-				type: 'supplierBillsSpace/clearBill',
+				type: "supplierBillsSpace/clearBill",
 				payload: {
-					bill
-				}
+					bill,
+				},
 			});
-		}
+		},
 	};
 
-	const onSearch = (fieldValues)=>{
+	const onSearch = (fieldValues) => {
 		dispatch({
-			type:'supplierBillsSpace/query',
-			payload:{...fieldValues, page:1}
+			type: "supplierBillsSpace/query",
+			payload: { ...fieldValues, page: 1 },
 		});
 	};
 
 	const clearModalProps = {
 		visible,
 		currentItem,
-		onConfirm(values){
+		onConfirm(values) {
 			dispatch({
-				type: `supplierBillsSpace/${editorType=='clearStorage'? 'doClearStorage':'doClearBill'}`,
+				type: `supplierBillsSpace/${
+					editorType == "clearStorage"
+						? "doClearStorage"
+						: "doClearBill"
+				}`,
 				payload: {
-					...values
-				}
+					...values,
+				},
 			});
 		},
-		onCancel(){
+		onCancel() {
 			dispatch({
-				type: 'supplierBillsSpace/hideEditor'
+				type: "supplierBillsSpace/hideEditor",
 			});
 		},
 	};
 
-	const ClearDebtStorageModalGen = ()=><ClearDebtStorageModal {...clearModalProps}/>;
+	const ClearDebtStorageModalGen = () => (
+		<ClearDebtStorageModal {...clearModalProps} />
+	);
 
-	const ClearSupplierBillsModalGen = ()=><ClearSupplierBillsModal {...clearModalProps}/>;
+	const ClearSupplierBillsModalGen = () => (
+		<ClearSupplierBillsModal {...clearModalProps} />
+	);
 
 	return (
 		<div className={supplierBillsClass}>
 			<BreadcrumbList breadcrumbItems={breadcrumbItems} />
 			<div className={search}>
-				<SupplierBillsSearchForm onSearch={onSearch} suppliers={suppliers}/>
+				<SupplierBillsSearchForm
+					onSearch={onSearch}
+					suppliers={suppliers}
+				/>
 			</div>
 			<div className={debtStorageListContainer}>
 				<DebtStorageList {...debtStorageListProps} />
 			</div>
 			<div className={supplierBillsListContainer}>
-				<SupplierBillsList {...supplierBillsListProps}/>
+				<SupplierBillsList {...supplierBillsListProps} />
 			</div>
-			{
-				editorType=='clearStorage'?
-					<ClearDebtStorageModalGen />:
-					<ClearSupplierBillsModalGen />
-			}
+			{editorType == "clearStorage" ? (
+				<ClearDebtStorageModalGen />
+			) : (
+				<ClearSupplierBillsModalGen />
+			)}
 		</div>
 	);
 }
 
 class SupplierBills extends Component {
-    constructor(props){
-        super(props);
-    }
+	constructor(props) {
+		super(props);
+	}
 
-	componentWillMount(){
-		let {isLogin} = this.props.systemUser;
+	componentWillMount() {
+		let { isLogin } = this.props.systemUser;
 		return !isLogin && redirect();
 	}
 
-    render(){
-		let {isLogin} = this.props.systemUser;
+	render() {
+		let { isLogin } = this.props.systemUser;
 		return isLogin && genSupplierBills(this.props);
-    }
+	}
 }
 
 SupplierBills.propTypes = {
-    storage:PropTypes.object,
+	storage: PropTypes.object,
 };
 
-function mapStateToProps({supplierBillsSpace, systemUser}) {
-    return {supplierBillsSpace, systemUser};
+function mapStateToProps({ supplierBillsSpace, systemUser }) {
+	return { supplierBillsSpace, systemUser };
 }
-
 
 export default connect(mapStateToProps)(SupplierBills);

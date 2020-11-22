@@ -6,16 +6,16 @@
  * @LastEditTime: 2020-11-19 23:42:07
  * @FilePath: /ManagingSystem/service/models/settlement.js
  */
-let mongoose =  require('mongoose');
+let mongoose = require("mongoose");
 let Schema = mongoose.Schema;
 
 let settlementSchema = new Schema({
-    createInstance: Date,
-    userId: String,
-    userName: String,
-    settlementAmount: Number,
+	createInstance: Date,
+	userId: String,
+	userName: String,
+	settlementAmount: Number,
 	products: Array,
-	userId: String
+	userId: String,
 });
 
 /**
@@ -25,4 +25,4 @@ let settlementSchema = new Schema({
     return this.find({_id:orderId}, cb);
 };*/
 
-module.exports = mongoose.model('Settlement', settlementSchema);
+module.exports = mongoose.model("Settlement", settlementSchema);

@@ -1,37 +1,33 @@
-import React, {Component,PropTypes} from 'react';
-import {connect} from 'dva';
-import {routerRedux} from 'dva/router';
-import {Search} from '../../components/SearchBar/SearchBar';
-import {redirect} from '../../utils/webSessionUtils';
-require('./index.css');
+import React, { Component, PropTypes } from "react";
+import { connect } from "dva";
+import { routerRedux } from "dva/router";
+import { Search } from "../../components/SearchBar/SearchBar";
+import { redirect } from "../../utils/webSessionUtils";
+require("./index.css");
 
-class Bills extends Component{
-    constructor(props) {
-        super(props);
-    }
+class Bills extends Component {
+	constructor(props) {
+		super(props);
+	}
 
-    componentWillMount(){
-        let {isLogin} = this.props.systemUser;
-        if(!isLogin){
-            redirect();
-        }
-    }
+	componentWillMount() {
+		let { isLogin } = this.props.systemUser;
+		if (!isLogin) {
+			redirect();
+		}
+	}
 
-    render(){
-        return (
-            <div className='bills'>
-                {this.props.children}
-            </div>
-        );
-    }
+	render() {
+		return <div className="bills">{this.props.children}</div>;
+	}
 }
 
 Bills.propTypes = {
-    orders:PropTypes.object,
+	orders: PropTypes.object,
 };
 
-function mapStateToProps({systemUser}) {
-    return {systemUser};
+function mapStateToProps({ systemUser }) {
+	return { systemUser };
 }
 
 export default connect(mapStateToProps)(Bills);

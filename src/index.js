@@ -11,19 +11,19 @@
  *                       88" . "88
  *                       (| -_- |)
  *                       0\  =  /0
- *                     ___/`---'\___
- *                   .' \\|     |// '.
+ *                     ___/`---"\___
+ *                   ." \\|     |// ".
  *                  / \\|||  :  |||// \
  *                 / _||||| -:- |||||- \
  *                |   | \\\  - /// |   |
- *                | \_|  ''\---/''  |_/ |
- *                \  .-\__  '-'  ___/-. /
- *              ___'. .'  /--.--\  `. .'___
- *           ."" '<  `.___\_<|>_/___.' >' "".
+ *                | \_|  ""\---/""  |_/ |
+ *                \  .-\__  "-"  ___/-. /
+ *              ___". ."  /--.--\  `. ."___
+ *           ."" "<  `.___\_<|>_/___." >" "".
  *          | | :  `- \`.;`\ _ /`;.`/ - ` : | |
  *          \  \ `_.   \_ __\ /__ _/   .-` /  /
- *      =====`-.____`.___ \_____/___.-`___.-'=====
- *                        `=---='
+ *      =====`-.____`.___ \_____/___.-`___.-"=====
+ *                        `=---="
  *
  *
  *      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -47,9 +47,9 @@ const app = dva({
 // 3. Model
 app.model(require("./models/home"));
 app.model(require("./models/orders"));
-/*app.model(require('./models/stocks'));*/
+/*app.model(require("./models/stocks"));*/
 app.model(require("./models/storage"));
-/*app.model(require('./models/funds'));*/
+/*app.model(require("./models/funds"));*/
 app.model(require("./models/manage"));
 app.model(require("./models/systemUser"));
 app.model(require("./models/customers"));

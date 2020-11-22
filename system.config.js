@@ -14,7 +14,7 @@
  * @Date: 2018-04-01 23:47:56
  * @Author: KnowsCount
  * @Github: https://github.com/KnowsCount/NKCS-Storage
- * @LastEditTime: 2020-11-18 09:52:05
+ * @LastEditTime: 2020-11-22 08:20:30
  * @FilePath: /ManagingSystem/system.config.js
  */
 
@@ -27,21 +27,21 @@ const serverPort = "4000";
 const httpServerDev = "http://localhost:" + serverPort;
 //跨域请求头配置
 const defaultOptionsDev = {
-    mode: "cors",
-    credentials: "include",
-    headers: {
-        "content-type": "application/json",
-    },
+	mode: "cors",
+	credentials: "include",
+	headers: {
+		"content-type": "application/json",
+	},
 };
 
 //部署模式，服务器地址
 const httpServerPro = "";
 //同域请求头配置
 const defaultOptionsProd = {
-    credentials: "same-origin",
-    headers: {
-        "content-type": "application/json",
-    },
+	credentials: "same-origin",
+	headers: {
+		"content-type": "application/json",
+	},
 };
 
 //数据库地址
@@ -53,14 +53,14 @@ const mongooseConnectPro = "mongodb://localhost:27017/accountSystem";
 //上传图片后返回的服务器地址
 //可以在 ./service/routes/uploadProductImg.js 中对返回图片的路径进行拼接修改
 const uploadImgServerDev = "localhost";
-const uploadImgServerPro = "192.168.195.74";
+//const uploadImgServerPro = "192.168.195.74";
 
 module.exports = {
-    httpServer: debug ? httpServerDev : httpServerPro,
-    serverPort: serverPort,
-    defaultOptions: debug ? defaultOptionsDev : defaultOptionsProd,
-    mongooseConnect: debug ? mongooseConnectDev : mongooseConnectPro,
-    uploadImgServer: debug ? uploadImgServerDev : uploadImgServerPro,
-    //是否支持注册功能
-    register: true,
+	httpServer: debug ? httpServerDev : httpServerPro,
+	serverPort: serverPort,
+	defaultOptions: debug ? defaultOptionsDev : defaultOptionsProd,
+	mongooseConnect: debug ? mongooseConnectDev : mongooseConnectPro,
+	uploadImgServer: debug ? uploadImgServerDev : uploadImgServerPro,
+	//是否支持注册功能
+	register: true,
 };

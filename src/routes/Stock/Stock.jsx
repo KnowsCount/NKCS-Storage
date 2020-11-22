@@ -1,12 +1,12 @@
-import React, {Component, PropTypes} from 'react';
-import {connect} from 'dva';
-import {routerRedux} from 'dva/router';
-import StockSearchForm from '../../components/Stocks/StockSearchForm/StockSearchForm';
-import StockList from '../../components/Stocks/StockList/StockList';
-import {redirect} from '../../utils/webSessionUtils';
-import styles from './index.css';
+import React, { Component, PropTypes } from "react";
+import { connect } from "dva";
+import { routerRedux } from "dva/router";
+import StockSearchForm from "../../components/Stocks/StockSearchForm/StockSearchForm";
+import StockList from "../../components/Stocks/StockList/StockList";
+import { redirect } from "../../utils/webSessionUtils";
+import styles from "./index.css";
 
-function genStock({dispatch, stocks, loading}) {
+function genStock({ dispatch, stocks, loading }) {
 	/*const {
 		list,
 		field,
@@ -19,14 +19,14 @@ function genStock({dispatch, stocks, loading}) {
 		keyword,
 		onSearch(fieldValues){
 			dispatch(routerRedux.push({
-				pathname: '/stocks',
+				pathname: "/stocks",
 				query: {...fieldValues, page: 1}
 			}));
 		}
 	};*/
 	const stockList = {
 		dataSource: stocks,
-		loading
+		loading,
 	};
 	return (
 		<div className={styles.stockContainer}>
