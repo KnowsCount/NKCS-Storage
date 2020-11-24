@@ -10,8 +10,9 @@ const menus = [
 	["index", "/", "首页", "home"],
 	["orders", "/orders", "订单", "solution"],
 	["storage", "/storage", "入库", "upload"],
-	/*["stock", "/stock", "仓库", "folder"],
-	["funds", "/fund", "资金", "pay-circle-o"],*/
+	/*["stock", "/stock", "仓库", "folder"],*/
+	/*["funds", "/funds", "资金", "pay-circle-o"],*/
+	["buy", "/buy", "购买", "foo"],
 	["resource", "/resource", "物资", "pay-circle-o"],
 	["settlement", "/settlement", "结算", "pushpin-o"],
 	["bills", "/bills", "对账", "copy"],

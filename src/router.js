@@ -3,7 +3,7 @@
  * @Date: 2018-04-01 23:47:56
  * @Author: KnowsCount
  * @Github: https://github.com/KnowsCount/NKCS-Storage
- * @LastEditTime: 2020-11-18 09:57:05
+ * @LastEditTime: 2020-11-24 11:37:55
  * @FilePath: /ManagingSystem/src/router.js
  *
  * _______________#########_______________________
@@ -70,9 +70,11 @@ export default function ({ history }) {
 					component={Storage}
 				/>
 
-				{/* <Route path="/stock" component={Stock}/>
+				{/*<Route path="/stock" onEnter={requireAuth} component={Stock} />
 
-                <Route path="/funds" component={Funds}/>*/}
+				<Route path="/funds" onEnter={requireAuth} component={Funds} />*/}
+
+				<Route path="/buy" onEnter={requireAuth} component={Resource} />
 
 				<Route
 					path="/resource"

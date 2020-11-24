@@ -3,7 +3,7 @@
  * @Date: 2018-04-01 23:47:56
  * @Author: KnowsCount
  * @Github: https://github.com/KnowsCount/NKCS-Storage
- * @LastEditTime: 2020-11-18 09:52:28
+ * @LastEditTime: 2020-11-24 11:35:33
  * @FilePath: /ManagingSystem/src/index.js
  *
  *                        _oo0oo_
@@ -47,9 +47,10 @@ const app = dva({
 // 3. Model
 app.model(require("./models/home"));
 app.model(require("./models/orders"));
-/*app.model(require("./models/stocks"));*/
-app.model(require("./models/storage"));
+app.model(require("./models/stocks"));
+/*app.model(require("./models/storage"));*/
 /*app.model(require("./models/funds"));*/
+app.model(require("./models/buy"));
 app.model(require("./models/manage"));
 app.model(require("./models/systemUser"));
 app.model(require("./models/customers"));

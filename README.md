@@ -68,6 +68,7 @@ _御用后端技术：Express + Mongoose_
 
 ### 🛠 待修复内容
 
+-   **打包后显示空白** !important
 -   商品图片上传
 -   favicon（[0ac89cd](https://github.com/KnowsCount/NKCS-Storage/commit/0ac89cd4b6f65d75ab3612cca4432ecb9af02fc2) 中试过，失败。）
 
