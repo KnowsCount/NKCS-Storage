@@ -14,7 +14,7 @@
  * @Date: 2018-04-01 23:47:56
  * @Author: KnowsCount
  * @Github: https://github.com/KnowsCount/NKCS-Storage
- * @LastEditTime: 2020-11-22 08:20:30
+ * @LastEditTime: 2020-11-24 11:08:16
  * @FilePath: /ManagingSystem/system.config.js
  */
 
@@ -53,7 +53,7 @@ const mongooseConnectPro = "mongodb://localhost:27017/accountSystem";
 //上传图片后返回的服务器地址
 //可以在 ./service/routes/uploadProductImg.js 中对返回图片的路径进行拼接修改
 const uploadImgServerDev = "localhost";
-//const uploadImgServerPro = "192.168.195.74";
+const uploadImgServerPro = "localhost";
 
 module.exports = {
 	httpServer: debug ? httpServerDev : httpServerPro,
