@@ -35,6 +35,20 @@ import "./index.html";
 import "./index.less";
 import dva from "dva";
 import { browserHistory } from "dva/router";
+import Home from "./models/home";
+import Orders from "./models/orders";
+import Stocks from "./models/stocks";
+import Buy from "./models/buy";
+import Manage from "./models/manage";
+import systemUser from "./models/systemUser";
+import Customers from "./models/customers";
+import Products from "./models/products";
+import Suppliers from "./models/suppliers";
+import Settlement from "./models/settlement";
+import Resource from "./models/resource";
+import customerBills from "./models/customerBills";
+import supplierBills from "./models/supplierBills";
+import Router from "./router";
 
 // 1. Initialize
 const app = dva({
@@ -45,24 +59,24 @@ const app = dva({
 //app.use({});
 
 // 3. Model
-app.model(require("./models/home"));
-app.model(require("./models/orders"));
-app.model(require("./models/stocks"));
+app.model(Home);
+app.model(Orders);
+app.model(Stocks);
 /*app.model(require("./models/storage"));*/
 /*app.model(require("./models/funds"));*/
-app.model(require("./models/buy"));
-app.model(require("./models/manage"));
-app.model(require("./models/systemUser"));
-app.model(require("./models/customers"));
-app.model(require("./models/products"));
-app.model(require("./models/suppliers"));
-app.model(require("./models/settlement"));
-app.model(require("./models/resource"));
-app.model(require("./models/customerBills"));
-app.model(require("./models/supplierBills"));
+app.model(Buy);
+app.model(Manage);
+app.model(systemUser);
+app.model(Customers);
+app.model(Products);
+app.model(Suppliers);
+app.model(Settlement);
+app.model(Resource);
+app.model(customerBills);
+app.model(supplierBills);
 
 // 4. Router
-app.router(require("./router"));
+app.router(Router);
 
 // 5. Start
 app.start("#root");
