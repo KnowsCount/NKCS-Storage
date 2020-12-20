@@ -2,7 +2,6 @@ dist
 dist.bak
 node_modules
 .DS_Store
-package-lock.json
 .vscode
 .idea
 .yarn-lock.json
