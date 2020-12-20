@@ -2,7 +2,7 @@
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-v19112020-blue.svg?cacheSeconds=2592000" />
   <img alt="Database" src="https://img.shields.io/badge/database-MongoDB-lightgrey" />
-  <img alt="Database" src="https://img.shields.io/badge/framework-dva-orange" />
+  <img alt="Framework" src="https://img.shields.io/badge/framework-dva-orange" />
 </p>
 
 > REACT 产品。小型库存管理系统，给 NKCS 开发。
