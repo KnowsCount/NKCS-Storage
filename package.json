@@ -19,7 +19,7 @@
 		"babel-plugin-dva-hmr": "^0.2.0",
 		"babel-plugin-transform-runtime": "^6.9.0",
 		"babel-runtime": "^6.9.2",
-		"cross-env": "^5.0.5",
+		"cross-env": "^7.0.3",
 		"expect": "^1.20.2",
 		"html-webpack-plugin": "^5.0.0-alpha.14",
 		"jest": "^26.6.3",
