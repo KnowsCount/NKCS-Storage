@@ -14,7 +14,7 @@
 		"react-dom": "^15.3.2"
 	},
 	"devDependencies": {
-		"atool-test-mocha": "^0.1.5",
+		"atool-test-mocha": "^0.2.1",
 		"babel-plugin-dev-expression": "^0.2.1",
 		"babel-plugin-dva-hmr": "^0.4.2",
 		"babel-plugin-transform-runtime": "^6.9.0",
