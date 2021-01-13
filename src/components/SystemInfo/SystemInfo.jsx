@@ -84,7 +84,7 @@ const SystemInfo = ({systemUser, dispatch}) => {
 
 	return (
 		<div className={systemInfo}>
-			<span className={systemName}>铭帝系统门窗管理系统</span>
+			<span className={systemName}>NKCS 库存管理系统</span>
 			<span className={userInfo}>
                 <span className={userName}>
                     {
