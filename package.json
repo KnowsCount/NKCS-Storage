@@ -18,7 +18,7 @@
   "devDependencies": {
     "atool-test-mocha": "^0.1.5",
     "babel-plugin-dev-expression": "^0.2.1",
-    "babel-plugin-dva-hmr": "^0.4.0",
+    "babel-plugin-dva-hmr": "^0.4.2",
     "babel-runtime": "^6.9.2",
     "cross-env": "^5.0.5",
     "expect": "^1.20.2",
