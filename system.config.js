@@ -24,7 +24,7 @@ const defaultOptionsDev = {
 };
 
 //部署模式，服务器地址
-const httpServerPro = "";
+const httpServerPro = "http://114.55.171.231";
 //同域请求头配置
 const defaultOptionsProd = {
     credentials: "same-origin",
@@ -37,7 +37,7 @@ const defaultOptionsProd = {
 //开发模式数据库地址
 const mongooseConnectDev = "mongodb://localhost:27017/accountSystem";
 //部署模式数据库地址
-const mongooseConnectPro = "mongodb://localhost:27017/accountSystem";
+const mongooseConnectPro = "mongodb://114.55.171.231:27017/accountSystem";
 
 //上传图片后返回的服务器地址
 //可以在 ./service/routes/uploadProductImg.js 中对返回图片的路径进行拼接修改
